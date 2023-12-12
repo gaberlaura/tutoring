@@ -20,6 +20,12 @@ const Navigation = () => {
                     <Link className="nav-link" to='/appointments'>
                         Appointments
                     </Link>
+                    <Link className="nav-link" to='/blog'>
+                        Blog
+                    </Link>
+                    <Link className="nav-link" to='/sign-in'>
+                        Sign In
+                    </Link>
                 </div>
             </div>
             <Outlet />
