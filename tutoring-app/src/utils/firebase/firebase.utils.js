@@ -1,11 +1,13 @@
-import {initializeApp} from 'firebase/app';//creates an app instance based config
+import { initializeApp } from 'firebase/app';//creates an app instance based config
 import {
-    getAuth, 
-    signInWithRedirect, 
+    getAuth,
+    signInWithRedirect,
     GoogleAuthProvider,
     signInWithPopup,
     createUserWithEmailAndPassword,
-    signInWithEmailAndPassword
+    signInWithEmailAndPassword,
+    signOut,
+    onAuthStateChanged
 } from 'firebase/auth';
 import {
     getFirestore,
@@ -22,7 +24,7 @@ const firebaseConfig = {
     storageBucket: "tutoring-db.appspot.com",
     messagingSenderId: "446018699337",
     appId: "1:446018699337:web:faf391ec2134146688bf98"
-  };
+};
 
 // Initialize Firebase
 const firebaseapp = initializeApp(firebaseConfig);
@@ -38,46 +40,50 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 
 export const db = getFirestore();
 
-export const createUserDocumentFromAuth = async(userAuth, additionalInformation = {}) =>{
-    if(!userAuth) return;
+export const createUserDocumentFromAuth = async (
+    userAuth,
+    additionalInformation = {}
+) => {
+    if (!userAuth) return;
 
     const userDocRef = doc(db, 'users', userAuth.uid);
-    console.log(userDocRef);
 
     const userSnapShot = await getDoc(userDocRef);
-    console.log(userSnapShot);
-    console.log(userSnapShot.exists());
 
     //if user data does not exist...
-    if(!userSnapShot.exists()){
+    if (!userSnapShot.exists()) {
         //create / set the document with the data from userAuth in my collection
-        const {displayName, email} = userAuth;
+        const { displayName, email } = userAuth;
         const createdAt = new Date();
 
-        try{
+        try {
             await setDoc(userDocRef, {
                 displayName,
                 email,
                 createdAt,
                 ...additionalInformation
             });
-        }catch (error){
+        } catch (error) {
             console.log(`error creating the user`, error.message);
         }
     }
     //if user data exists, return userDocRef
     return userDocRef;
-    
+
 }
 
-export const createAuthUserWithEmailAndPassword = async(email, password) => {
-    if(!email || !password) return;
+export const createAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
 
-    createUserWithEmailAndPassword(auth, email, password)
+    return await createUserWithEmailAndPassword(auth, email, password)
 }
 
-export const signInAuthUserWithEmailAndPassword = async(email, password) => {
-    if(!email || !password) return;
+export const signInAuthUserWithEmailAndPassword = async (email, password) => {
+    if (!email || !password) return;
 
-    signInWithEmailAndPassword(auth, email, password)
+    return await signInWithEmailAndPassword(auth, email, password)
 }
+
+export const signOutUser = async () => await signOut(auth);
+
+export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);

@@ -14,29 +14,26 @@ const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
 
-    console.log(formFields);
-
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     }
 
     const signInWithGoogle = async () => {
-        const { user } = await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('1');
         try {
-            console.log('2');
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log('3');
-            console.log(response);
-            console.log('4');
+            const { user } = await signInAuthUserWithEmailAndPassword(
+                email,
+                password
+            );
+           // setCurrentUser(user);
+
             resetFormFields();
         } catch (error) {
-            switch(error.code){
+            switch (error.code) {
                 case 'auth/wrong-password':
                     alert('incorrect email or password');
                     break;
