@@ -1,0 +1,29 @@
+.about-header {
+    //position: absolute;
+    font-weight: bold;
+    margin: 0 6px 0;
+    font-size: 18px;
+    color: #0c0c0c;
+    text-align: center;
+}
+
+.about-container {
+    min-width: 20%;
+    height: 340px;
+    margin: 0 7.5px 15px;
+    overflow: hidden;
+    width: 100%;
+    display: flex;
+
+    .profile-pic {
+        float: left;
+        margin: 0 16px 16px 0;
+    }
+
+    .about-desc {
+        font-weight: lighter;
+        font-size: 18px;
+        overflow: hidden;
+        margin: 0 16px 16px 0;
+    }
+}

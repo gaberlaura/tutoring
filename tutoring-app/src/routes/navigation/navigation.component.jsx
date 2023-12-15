@@ -24,10 +24,12 @@ const Navigation = () => {
                     <Link className="nav-link" to='/blog'>
                         Blog
                     </Link>
-                    <Link className="nav-link" to='/appointments'>Appointments</Link>
                     {
                         currentUser ? 
-                            (<span className="nav-link" onClick={signOutUser}>Sign Out</span>) 
+                            (<div>
+                                <Link className="nav-link" to='/appointments'>Appointments</Link>
+                                <span className="nav-link" onClick={signOutUser}>Sign Out</span>
+                            </div>) 
                             : 
                             (<Link className="nav-link" to='/auth'> Sign In </Link>)
                     }
