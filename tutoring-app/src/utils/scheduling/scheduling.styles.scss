@@ -1,0 +1,27 @@
+.scheduling-header{
+    //position: absolute;
+    font-weight: bold;
+    margin: 0 6px 0;
+    font-size: 22px;
+    color: #0c0c0c;
+    text-align: center;
+}
+
+.scheduling-button{
+    min-width: 135px;
+    width: auto;
+    height: 20px;
+    letter-spacing: 0.5px;
+    line-height: 20px;
+    padding: 0 25px 0 25px;
+    font-size: 18px;
+    color: rgb(14, 14, 14);
+    text-transform: uppercase;
+    font-family: 'Open Sans Condensed';
+    font-weight: bolder;
+    border: black;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    border: 1px solid black;
+}
