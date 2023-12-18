@@ -4,12 +4,14 @@ import Navigation from './routes/navigation/navigation.component';
 import Authentication from './routes/authentication/authentication.component';
 import About from './components/About/about.component';
 import Scheduling from './utils/scheduling/scheduling.component';
+import Shop from './routes/shop/shop.component';
 
 const App = () => {
   return (
     <Routes>
       <Route path='/' element={<Navigation />}>
         <Route index element={<Home />} />
+        <Route path='shop' element={<Shop/>}/>
         <Route path='auth' element={<Authentication />} />
         <Route path='about' element={<About />} />
         <Route path='appointments' element={<Scheduling />} />
