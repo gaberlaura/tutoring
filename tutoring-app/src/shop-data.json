@@ -3,25 +3,25 @@
       "id": 1,
       "name": "Little Kid Package: 4 sessions",
       "imageUrl": "/little_kid.jpg",
-      "price": "$100"
+      "price": 100
     },
     {
         "id": 2,
         "name": "Little Kid Package: 6 sessions",
         "imageUrl": "/little_kid.jpg",
-        "price": "$140"
+        "price": 140
       },
       {
         "id": 3,
         "name": "Big Kid Package: 4 sessions",
         "imageUrl": "/big_kid.jpg",
-        "price": "$140"
+        "price": 140
       },
       {
         "id": 4,
         "name": "Big Kid Package: 6 sessions",
         "imageUrl": "/big_kid.jpg",
-        "price": "$200"
+        "price": 200
       }
   ]
   
