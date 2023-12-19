@@ -5,6 +5,7 @@ import Authentication from './routes/authentication/authentication.component';
 import About from './components/About/about.component';
 import Scheduling from './utils/scheduling/scheduling.component';
 import Shop from './routes/shop/shop.component';
+import Checkout from './routes/checkout/checkout.component';
 
 const App = () => {
   return (
@@ -15,6 +16,7 @@ const App = () => {
         <Route path='auth' element={<Authentication />} />
         <Route path='about' element={<About />} />
         <Route path='appointments' element={<Scheduling />} />
+        <Route path='checkout' element={<Checkout />} />
       </Route>
     </Routes>
   );
