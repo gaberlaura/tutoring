@@ -6,9 +6,11 @@ import About from './components/About/about.component';
 import Scheduling from './utils/scheduling/scheduling.component';
 import Shop from './routes/shop/shop.component';
 import Checkout from './routes/checkout/checkout.component';
+import Footer from './components/footer/footer.component';
 
 const App = () => {
   return (
+    <div>
     <Routes>
       <Route path='/' element={<Navigation />}>
         <Route index element={<Home />} />
@@ -19,6 +21,8 @@ const App = () => {
         <Route path='checkout' element={<Checkout />} />
       </Route>
     </Routes>
+    <Footer/>
+    </div>
   );
 }
 

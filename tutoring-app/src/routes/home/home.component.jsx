@@ -20,7 +20,7 @@ const Home = () => {
   return (
     <div>
       <Directory categories={categories} />
-      <Footer />
+      {/* <Footer /> */}
     </div>
   );
 }
