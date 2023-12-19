@@ -1,20 +1,19 @@
 .footer-container {
-    padding: 2% 2.5%;
+    padding-top: 20px;
+    display: block;
+    margin-top: 20px;
+    box-sizing: border-box;
+    position: relative;
+    //padding: 2% 2.5%;
     background: #f3eded;
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 33%;
+    height: 35%;
  
     // @media (max-width: 1000px) {
     //     // padding: 70px 30px;
     // }
-
-    .footer-header {
-        color: "black";
-        text-align: "center";
-        margin-top: "10px";
-    }
 
     .footer-information{
         display: flex;
@@ -31,19 +30,19 @@
             );
             grid-gap: 10px;
          
-            @media (max-width: 1000px) {
-                grid-template-columns: repeat(
-                    auto-fill,
-                    minmax(200px, 1fr)
-                );
-            }
+            // @media (max-width: 1000px) {
+            //     grid-template-columns: repeat(
+            //         auto-fill,
+            //         minmax(200px, 1fr)
+            //     );
+            // }
         }
 
         .footer-column{
             display: flex;
             flex-direction: column;
             text-align: left;
-            margin-left: 60px;
+            margin-left: 20px;
 
             .footer-section{
                 font-size: 24px;
