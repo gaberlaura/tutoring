@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
-
+import { useNavigate } from 'react-router-dom';
 import FormInput from '../form-input/form-input.component';
 import './sign-in-form.styles.scss';
 import Button from '../button/button.component';
@@ -13,6 +13,11 @@ const defaultFormFields = {
 const SignInForm = () => {
     const [formFields, setFormFields] = useState(defaultFormFields);
     const { email, password } = formFields;
+    const navigate = useNavigate();
+
+    const goToApptPage = () => {
+        navigate('/appointments');
+    }
 
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
@@ -20,6 +25,7 @@ const SignInForm = () => {
 
     const signInWithGoogle = async () => {
         await signInWithGooglePopup();
+        goToApptPage();
     }
 
     const handleSubmit = async (event) => {
@@ -29,9 +35,12 @@ const SignInForm = () => {
                 email,
                 password
             );
-           // setCurrentUser(user);
+            // setCurrentUser(user);
 
             resetFormFields();
+
+            //navigate to appointments page
+            goToApptPage();
         } catch (error) {
             switch (error.code) {
                 case 'auth/wrong-password':
