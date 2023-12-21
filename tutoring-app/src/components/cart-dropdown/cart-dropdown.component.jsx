@@ -4,13 +4,19 @@ import CartItem from '../cart-item/cart-item.component';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/cart-context';
 import { useNavigate } from 'react-router-dom';
+import { UserContext } from "../../contexts/user.context";
 
 const CartDropDown = () => {
     const { cartItems } = useContext(CartContext);
     const navigate = useNavigate();
+    const { currentUser } = useContext(UserContext);
 
     const goToCheckoutHandler = () => {
         navigate('/checkout');
+    }
+
+    const navigateToAuth = () => {
+        navigate('/auth');
     }
 
     return (
@@ -20,7 +26,12 @@ const CartDropDown = () => {
                     <CartItem key={item.id} cartItem={item} />
                 ))}
             </div>
-            <Button onClick = {goToCheckoutHandler}>Check out</Button>
+            {
+                currentUser ?
+                    (<Button onClick={goToCheckoutHandler}>Check out</Button>)
+                    :
+                    (<Button onClick={navigateToAuth}>Check out</Button>)
+            }
         </div>
     )
 }

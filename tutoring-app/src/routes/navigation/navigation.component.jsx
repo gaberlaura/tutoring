@@ -15,15 +15,17 @@ const Navigation = () => {
         <Fragment>
             <div className="navigation">
                 <Link className="logo-container" to='/'>
-                    <CrwnLogo className='logo' />
+                    {/* <CrwnLogo className='logo' /> */}
+                    <img className='logo-img' src='./logo-hands.jpg'/>
                 </Link>
+                <h1 className="site-title">Shared Vision Tutoring</h1>
                 <div className="nav-links-container">
                     <Link className="nav-link" to='/about'>
                         About
                     </Link>
-                    <Link className="nav-link" to='/blog'>
+                    {/* <Link className="nav-link" to='/blog'>
                         Blog
-                    </Link>
+                    </Link> */}
                     <Link className="nav-link" to='/shop'>
                         Shop
                     </Link>
