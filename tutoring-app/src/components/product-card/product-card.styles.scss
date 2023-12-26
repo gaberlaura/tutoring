@@ -33,14 +33,16 @@
     }
   
     .footer {
-      width: 100%;
+      position: absolute;
+      top: 5px;
+      width: 90%;
       height: 5%;
       display: flex;
       justify-content: space-between;
-      font-size: 18px;
+      font-size: 30px;
   
       .name {
-        width: 90%;
+        width: 40%;
         margin-bottom: 15px;
       }
   
