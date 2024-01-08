@@ -18,6 +18,10 @@ const addCartItem = (cartItems, productToAdd) => {
     return [...cartItems, { ...productToAdd, quantity: 1 }];
 };
 
+const clearCartItem = (cartItems, cartItemToClear) => {
+    return cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
+}
+
 const removeCartItem = (cartItems, cartItemToRemove) => {
     //Search for product in cart
     const existingCartItem = cartItems.find(
@@ -36,10 +40,6 @@ const removeCartItem = (cartItems, cartItemToRemove) => {
             : cartItem
     );
 };
-
-const clearCartItem = (cartItems, cartItemToClear) => {
-    return cartItems.filter((cartItem) => cartItem.id !== cartItemToClear.id);
-}
 
 export const CartContext = createContext({
     isCartOpen: false,

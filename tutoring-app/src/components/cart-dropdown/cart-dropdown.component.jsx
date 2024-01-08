@@ -2,14 +2,15 @@ import './cart-dropdown.styles.scss';
 import Button from '../button/button.component';
 import CartItem from '../cart-item/cart-item.component';
 import { useContext } from 'react';
-import { CartContext } from '../../contexts/cart-context';
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from "../../contexts/user.context";
+import { selectCartItems } from '../../store/cart/cart.selector';
 
 const CartDropDown = () => {
-    const { cartItems } = useContext(CartContext);
+    const cartItems = useSelector(selectCartItems);
+
     const navigate = useNavigate();
-    const { currentUser } = useContext(UserContext);
 
     const goToCheckoutHandler = () => {
         navigate('/checkout');
@@ -26,12 +27,13 @@ const CartDropDown = () => {
                     <CartItem key={item.id} cartItem={item} />
                 ))}
             </div>
-            {
+            {/* {
                 currentUser ?
                     (<Button onClick={goToCheckoutHandler}>Check out</Button>)
                     :
                     (<Button onClick={navigateToAuth}>Check out</Button>)
-            }
+            } */}
+            (<Button onClick={goToCheckoutHandler}>Check out</Button>)
         </div>
     )
 }
