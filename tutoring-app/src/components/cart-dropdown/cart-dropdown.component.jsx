@@ -33,7 +33,7 @@ const CartDropDown = () => {
                     :
                     (<Button onClick={navigateToAuth}>Check out</Button>)
             } */}
-            (<Button onClick={goToCheckoutHandler}>Check out</Button>)
+            <Button onClick={goToCheckoutHandler}>Check out</Button>
         </div>
     )
 }
