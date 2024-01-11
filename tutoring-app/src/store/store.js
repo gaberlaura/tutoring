@@ -1,7 +1,7 @@
 //Where all of our Redux happens. Where we receive actions and update the state based on dispatch. 
 
-import { legacy_createStore as createStore} from 'redux'
-import {compose, applyMiddleware} from 'redux';
+import { legacy_createStore as createStore } from 'redux'
+import { compose, applyMiddleware } from 'redux';
 import logger from 'redux-logger';//allows us to see what the state looks like before an action is dispatched, what the action is, and how the state looks like after the action.
 
 import { rootReducer } from './root-reducer';

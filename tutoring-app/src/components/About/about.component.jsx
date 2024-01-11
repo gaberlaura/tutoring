@@ -1,3 +1,8 @@
+/* 
+    This component shares information about the founder of Shared Vision.
+    It imports styles from the './about.styles.scss' file.
+*/
+
 import './about.styles.scss';
 
 const About = () => {
