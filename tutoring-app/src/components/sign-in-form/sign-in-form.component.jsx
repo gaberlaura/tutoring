@@ -1,3 +1,13 @@
+/* 
+    This component renders a user interface for signing in. 
+    It imports styles from the './sign-in-form.styles.scss' file.
+    The component maintains state for form fields using the 'useState' hook.
+    The form includes input fields for email and password, managed by the 'FormInput' component. 
+    Users can sign in using their email and password, and there is also an option to sign in with Google through a separate button. 
+    The form includes error handling for incorrect passwords, non-existing users, and generic errors.
+    Upon successful sign-in, the user is redirected to the '/appointments' page. 
+*/
+
 import { useState } from 'react';
 import { signInWithGooglePopup, createUserDocumentFromAuth, signInAuthUserWithEmailAndPassword } from '../../utils/firebase/firebase.utils';
 import { useNavigate } from 'react-router-dom';
@@ -35,11 +45,9 @@ const SignInForm = () => {
                 email,
                 password
             );
-            // setCurrentUser(user);
 
             resetFormFields();
 
-            //navigate to appointments page
             goToApptPage();
         } catch (error) {
             switch (error.code) {

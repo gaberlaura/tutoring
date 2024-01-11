@@ -1,6 +1,9 @@
-import './button.styles.scss';
+/*
+  This component serves as a reusable button element in the application.It imports styles from the './button.styles.scss' file.
+  The buttonType prop determines the specific style, while the BUTTON_TYPE_CLASSES object maps different types to corresponding style classes. 
+*/
 
-//3 button types:default, inverted, google sign in
+import './button.styles.scss';
 
 const BUTTON_TYPE_CLASSES = {
   google: 'google-sign-in',

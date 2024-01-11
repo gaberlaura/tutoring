@@ -1,3 +1,12 @@
+/*
+    This component is responsible for rendering each individual item within the checkout page or cart summary. 
+    It imports styles from the './checkout-item.styles.scss' file. 
+    It takes a 'cartItem' prop, containing information about the specific item, such as its name, image URL, price, and quantity.
+    And visually represents the checkout item with a container that includes the item's image, name, quantity with increment & decrement buttons, price, and a button to remove the item from the cart. 
+    It interacts with the Redux store using the 'useSelector' and 'useDispatch' hooks to manage the state and dispatch actions related to cart manipulation.
+    The increment, decrement, and remove buttons trigger corresponding actions dispatched to the Redux store, updating the cart's state based on user interactions.
+*/
+
 import './checkout-item.styles.scss';
 import { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
@@ -25,7 +34,7 @@ const CheckoutItem = ({ cartItem }) => {
                 </div>
                 <span className='value'>{quantity}</span>
                 <div className='arrow' onClick={addItemHandler}>
-                &#10095;
+                    &#10095;
                 </div>
             </span>
             <span className='price'>{price}</span>

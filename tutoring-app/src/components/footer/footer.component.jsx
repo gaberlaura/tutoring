@@ -1,3 +1,11 @@
+/*
+    This component serves as the footer section. It provides navigation links and information about Shared Vision. 
+    It imports styles from the './footer.styles.scss' file. 
+    The component uses React's 'Fragment' and 'Outlet' to render content defined by child routes.
+    The rendered footer includes a header with the name "Shared Vision Tutoring" and two sections containing informational links. 
+    The "Info" section includes links to the 'Contact' and 'About' pages, while the "Programs" section includes links to the 'Little Kids (6-12)' and 'Big Kids (13-18)' program pages.
+*/
+
 import './footer.styles.scss';
 import { React, Fragment } from "react";
 import { Outlet } from 'react-router';

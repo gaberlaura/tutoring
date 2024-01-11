@@ -1,4 +1,12 @@
-import { useState} from 'react';
+/* 
+  This component handles user registration. 
+  It imports styles from the './sign-up-form.styles.scss' file.
+  The form includes input fields for the user's display name, email, password, and password confirmation. 
+  It includes form validation to ensure that the entered passwords match.
+  Upon successful sign-up, the user is redirected to the '/shop' page. 
+*/
+
+import { useState } from 'react';
 import FormInput from '../form-input/form-input.component';
 import Button from '../button/button.component';
 import { useNavigate } from 'react-router-dom';
@@ -47,7 +55,6 @@ const SignUpForm = () => {
 
       await createUserDocumentFromAuth(user, { displayName });
       resetFormFields();
-      //navigate to programs page
       goToShopPage();
 
     } catch (error) {

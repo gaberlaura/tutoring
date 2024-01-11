@@ -7,17 +7,17 @@ export type UserState = {
     readonly currentUser: UserData | null;
 }
 
-export const INITIAL_STATE : UserState = {
+export const INITIAL_STATE: UserState = {
     currentUser: null
 }
 
 export const userReducer = (state = INITIAL_STATE, action: AnyAction) => {
-    if(setCurrentUser.match(action)){
-        return{
+    if (setCurrentUser.match(action)) {
+        return {
             ...state,
             currentUser: action.payload
         };
     }
-
-    return state;//return previous state if none of the cases match. 
+    //return previous state if none of the cases match.     
+    return state;
 }

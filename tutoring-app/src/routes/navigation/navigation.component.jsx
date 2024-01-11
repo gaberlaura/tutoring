@@ -3,24 +3,23 @@ import { useSelector } from "react-redux";
 import { Fragment } from "react";
 import { ReactComponent as CrwnLogo } from '../../assets/crown.svg';
 import './navigation.styles.scss';
-import {signOutUser} from '../../utils/firebase/firebase.utils';
+import { signOutUser } from '../../utils/firebase/firebase.utils';
 import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropDown from "../../components/cart-dropdown/cart-dropdown.component";
 import { selectCurrentUser } from "../../store/user/user.selector";
-import {selectIsCartOpen} from '../../store/cart/cart.selector';
+import { selectIsCartOpen } from '../../store/cart/cart.selector';
 
 const Navigation = () => {
     //useSelector takes in a function that is responsible for extracting info from the Redux store
-   const currentUser = useSelector(selectCurrentUser);
+    const currentUser = useSelector(selectCurrentUser);
 
-   const isCartOpen = useSelector(selectIsCartOpen);
+    const isCartOpen = useSelector(selectIsCartOpen);
 
     return (
         <Fragment>
             <div className="navigation">
                 <Link className="logo-container" to='/'>
-                    {/* <CrwnLogo className='logo' /> */}
-                    <img className='logo-img' src='./logo-hands.jpg'/>
+                    <img className='logo-img' src='./logo-hands.jpg' />
                 </Link>
                 <h1 className="site-title">Shared Vision Tutoring</h1>
                 <div className="nav-links-container">
@@ -37,17 +36,17 @@ const Navigation = () => {
                         Shop
                     </Link>
                     {
-                        currentUser ? 
+                        currentUser ?
                             (<div>
                                 <Link className="nav-link" to='/appointments'>Appointments</Link>
                                 <span className="nav-link" onClick={signOutUser}>Sign Out</span>
-                            </div>) 
-                            : 
+                            </div>)
+                            :
                             (<Link className="nav-link" to='/auth'> Sign In </Link>)
                     }
-                    <CartIcon/>
+                    <CartIcon />
                 </div>
-                { isCartOpen && <CartDropDown/>} 
+                {isCartOpen && <CartDropDown />}
             </div>
             <Outlet />
         </Fragment>

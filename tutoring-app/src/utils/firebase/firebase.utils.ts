@@ -1,7 +1,6 @@
 import { initializeApp } from 'firebase/app';//creates an app instance based config
 import {
     getAuth,
-    signInWithRedirect,
     GoogleAuthProvider,
     signInWithPopup,
     createUserWithEmailAndPassword,
@@ -44,7 +43,7 @@ export const signInWithGooglePopup = () => signInWithPopup(auth, provider);
 export const db = getFirestore();
 
 export type additionalInformation = {
-    displayName ?: string;
+    displayName?: string;
 }
 
 export type UserData = {
@@ -56,7 +55,7 @@ export type UserData = {
 export const createUserDocumentFromAuth = async (
     userAuth: User,
     additionalInformation = {} as additionalInformation
-) : Promise<void | QueryDocumentSnapshot<UserData>> => {
+): Promise<void | QueryDocumentSnapshot<UserData>> => {
     if (!userAuth) return;
 
     const userDocRef = doc(db, 'users', userAuth.uid);
@@ -80,7 +79,7 @@ export const createUserDocumentFromAuth = async (
             console.log(`error creating the user`, error);
         }
     }
-   
+
     return userSnapShot as QueryDocumentSnapshot<UserData>;
 
 }

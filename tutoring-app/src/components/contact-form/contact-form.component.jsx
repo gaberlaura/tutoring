@@ -1,3 +1,14 @@
+/*
+    This component provides and manages a contact form.
+    It imports styles from the './contact-form.styles.scss' file. 
+    It utilizes the 'useState' hook, tracking the subject, name, email, and message fields. 
+    The component includes event handlers for input changes and form submission.
+    The 'handleChange' function dynamically updates the form data as users type into the input fields, 
+    ensuring that the state accurately reflects the user's input.
+    The 'handleSubmit' function prevents the default form submission behavior, constructs an email data object with the form input, 
+    logs it to the console (simulating server-side logic), and clears the form after submission.
+*/
+
 import React, { useState } from 'react';
 import './contact-form.styles.scss';
 
@@ -41,7 +52,7 @@ const ContactForm = () => {
 
     return (
         <div className="contact-form-container">
-            <h1>Contact</h1>
+            <h1>Contact (COMING SOON)</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="subject">Subject:</label>
                 <input
