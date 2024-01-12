@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001; // Use the provided PORT or default to 3001
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -50,6 +50,7 @@ app.post('/submit-form', async (req, res) => {
     }
 });
 
-app.listen(port, () => {
+// Listen on the correct network interface (0.0.0.0) for external access
+app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running on port ${port}`);
 });
