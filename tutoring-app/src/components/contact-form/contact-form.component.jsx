@@ -6,7 +6,7 @@
     The 'handleChange' function dynamically updates the form data as users type into the input fields, 
     ensuring that the state accurately reflects the user's input.
     The 'handleSubmit' function prevents the default form submission behavior, constructs an email data object with the form input, 
-    logs it to the console (simulating server-side logic), and clears the form after submission.
+    sends a POST request to the server, and clears the form after submission.
 */
 
 import React, { useState } from 'react';
@@ -28,31 +28,39 @@ const ContactForm = () => {
         }));
     };
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Will replace the following with server-side logic to handle email submission.
-        const emailData = {
-            to: 'gaberlaura42@gmail.com',
-            subject: 'New Contact Form Submission',
-            body: `Subject: ${formData.subject}\nName: ${formData.name}\nEmail: ${formData.email}\nMessage: ${formData.message}`,
-        };
+        try {
+            const response = await fetch('http://localhost:3001/submit-form', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(formData),
+            });
 
-        // Will send this data to the server
-        console.log(emailData);
-
-        // Clear the form after submission
-        setFormData({
-            subject: '',
-            name: '',
-            email: '',
-            message: '',
-        });
+            if (response.ok) {
+                console.log(formData);
+                console.log('Form submitted successfully,,');
+                // Clear the form after submission
+                setFormData({
+                    subject: '',
+                    name: '',
+                    email: '',
+                    message: '',
+                });
+            } else {
+                console.error('Form submission failed(1)');
+            }
+        } catch (error) {
+            console.error('Error submitting form:', error);
+        }
     };
 
     return (
         <div className="contact-form-container">
-            <h1>Contact (COMING SOON)</h1>
+            <h1>Contact Me</h1>
             <form onSubmit={handleSubmit}>
                 <label htmlFor="subject">Subject:</label>
                 <input
@@ -74,7 +82,7 @@ const ContactForm = () => {
 
                 <label htmlFor="email">Email:</label>
                 <input
-                    type="email"
+                    type="text"
                     id="email"
                     name="email"
                     value={formData.email}

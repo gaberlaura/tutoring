@@ -11,6 +11,8 @@
     "@types/node": "^20.10.8",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
+    "body-parser": "^1.20.2",
+    "cors": "^2.8.5",
     "express": "^4.18.2",
     "firebase": "^10.7.1",
     "nodemailer": "^6.9.8",
@@ -32,9 +34,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "start-server": "node server.js",
-    "start-dev": "concurrently \"npm start\" \"npm run start-server\""
+    "server": "node ./src/utils/node/server.js",
+    "start-dev": "concurrently \"npm start\" \"npm run server\""
   },
+
   "eslintConfig": {
     "extends": [
       "react-app",
@@ -52,5 +55,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
   }
 }
