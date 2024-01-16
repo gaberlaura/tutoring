@@ -12,7 +12,7 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const corsOptions = {
-    origin: 'https://www.sharedvision-tutoring.com',
+    origin: 'https://main--golden-dragon-88501c.netlify.app',
     optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 
