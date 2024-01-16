@@ -11,19 +11,11 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
-const corsOptions = {
-    origin: 'https://main--golden-dragon-88501c.netlify.app',
-    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
 const app = express();
-
-console.log(process.env.PORT);
-
-const port = process.env.PORT || 3001; // Use the provided PORT or default to 3001
+const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
-app.use(cors(corsOptions));
+app.use(cors());
 
 // Set up nodemailer transporter outside the route handler
 const transporter = nodemailer.createTransport({
@@ -37,6 +29,7 @@ const transporter = nodemailer.createTransport({
 app.post('/submit-form', async (req, res) => {
     // Handle email submission logic here
     const emailData = req.body;
+    console.log(emailData);
 
     // Compose email options
     const mailOptions = {
@@ -57,7 +50,6 @@ app.post('/submit-form', async (req, res) => {
     }
 });
 
-// Listen on the correct network interface (0.0.0.0) for external access
 app.listen(port, '0.0.0.0', () => {
     console.log(`Server is running on port ${port}`);
 });
