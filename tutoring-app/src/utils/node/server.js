@@ -15,7 +15,13 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 app.use(bodyParser.json());
-app.use(cors());
+
+// Allow specific headers in CORS configuration
+app.use(cors({
+    origin: 'https://main--golden-dragon-88501c.netlify.app',
+    methods: 'POST',
+    allowedHeaders: ['Content-Type', 'Authorization'], // Add the headers your client is sending
+}));
 
 // Set up nodemailer transporter outside the route handler
 const transporter = nodemailer.createTransport({
