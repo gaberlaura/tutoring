@@ -12,6 +12,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 
 const app = express();
+
+console.log(process.env.PORT);
+
 const port = process.env.PORT || 3001; // Use the provided PORT or default to 3001
 
 app.use(bodyParser.json());
@@ -26,7 +29,7 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-app.post('/submit-form', async (req, res) => {
+app.post('https://www.sharedvision-tutoring.com/submit-form', async (req, res) => {
     // Handle email submission logic here
     const emailData = req.body;
     console.log(emailData);
