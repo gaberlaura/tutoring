@@ -11,6 +11,11 @@ const nodemailer = require('nodemailer');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 
+const corsOptions = {
+    origin: 'https://www.sharedvision-tutoring.com',
+    optionsSuccessStatus: 200, // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
+
 const app = express();
 
 console.log(process.env.PORT);
@@ -18,7 +23,7 @@ console.log(process.env.PORT);
 const port = process.env.PORT || 3001; // Use the provided PORT or default to 3001
 
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors(corsOptions));
 
 // Set up nodemailer transporter outside the route handler
 const transporter = nodemailer.createTransport({
@@ -29,10 +34,9 @@ const transporter = nodemailer.createTransport({
     },
 });
 
-app.post('https://www.sharedvision-tutoring.com/submit-form', async (req, res) => {
+app.post('/submit-form', async (req, res) => {
     // Handle email submission logic here
     const emailData = req.body;
-    console.log(emailData);
 
     // Compose email options
     const mailOptions = {
