@@ -20,42 +20,97 @@ const ContactForm = () => {
         message: '',
     });
 
+    const [errors, setErrors] = useState({
+        subject: '',
+        name: '',
+        email: '',
+        message: '',
+    });
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
             [name]: value,
         }));
+
+        // Clear the related error when the user starts typing
+        setErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: '',
+        }));
     };
+
+    const validateForm = () => {
+        let valid = true;
+        const newErrors = {};
+
+        if (!formData.subject.trim()) {
+            console.log('subject:',formData.subject.trim());
+            newErrors.subject = 'Subject is required';
+            valid = false;
+        }
+
+        if (!formData.name.trim()) {
+            console.log('name:',formData.name.trim());
+            newErrors.name = 'Name is required';
+            valid = false;
+        }
+
+        if (!formData.email.trim() || !isValidEmail(formData.email)) {
+            console.log('email:',formData.email.trim());
+            newErrors.email = 'Valid email is required';
+            valid = false;
+        }
+
+        if (!formData.message.trim()) {
+            console.log('message:',formData.message.trim());
+            newErrors.message = 'Message is required';
+            valid = false;
+        }
+
+        setErrors(newErrors);
+        return valid;
+    };
+
+    const isValidEmail = (email) => {
+        return /\S+@\S+\.\S+/.test(email);
+    };
+
 
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        try {
-            const response = await fetch('https://www.sharedvision-tutoring.com/submit-form', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                console.log(formData);
-                console.log('Form submitted successfully,,');
-                // Clear the form after submission
-                setFormData({
-                    subject: '',
-                    name: '',
-                    email: '',
-                    message: '',
+        if (validateForm()) {
+            try {
+                const response = await fetch('https://www.sharedvision-tutoring.com/submit-form', {//await fetch('http://localhost:3001/submit-form', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(formData),
                 });
-            } else {
-                console.error('Form submission failed(1)');
+
+                if (response.ok) {
+                    console.log(formData);
+                    console.log('Form submitted successfully,,');
+                    // Clear the form after submission
+                    setFormData({
+                        subject: '',
+                        name: '',
+                        email: '',
+                        message: '',
+                    });
+                } else {
+                    console.error('Form submission failed(1)');
+                }
+            } catch (error) {
+                console.error('Error submitting form:', error);
             }
-        } catch (error) {
-            console.error('Error submitting form:', error);
+        } else {
+            console.error('Form validation failed');
         }
+
     };
 
     return (
@@ -71,6 +126,8 @@ const ContactForm = () => {
                     onChange={handleChange}
                 />
 
+                <span className="error-message">{errors.subject}</span>
+
                 <label htmlFor="name">Name:</label>
                 <input
                     type="text"
@@ -79,6 +136,8 @@ const ContactForm = () => {
                     value={formData.name}
                     onChange={handleChange}
                 />
+
+                <span className="error-message">{errors.name}</span>
 
                 <label htmlFor="email">Email:</label>
                 <input
@@ -89,6 +148,8 @@ const ContactForm = () => {
                     onChange={handleChange}
                 />
 
+                <span className="error-message">{errors.email}</span>
+
                 <label htmlFor="message">Message:</label>
                 <textarea
                     id="message"
@@ -96,6 +157,8 @@ const ContactForm = () => {
                     value={formData.message}
                     onChange={handleChange}
                 ></textarea>
+
+                <span className="error-message">{errors.message}</span>
 
                 <button type="submit">Submit</button>
             </form>
