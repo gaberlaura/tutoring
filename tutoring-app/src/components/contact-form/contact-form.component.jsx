@@ -83,7 +83,7 @@ const ContactForm = () => {
 
         if (validateForm()) {
             try {
-                const response = await fetch('https://www.sharedvision-tutoring.com/submit-form', {//await fetch('http://localhost:3001/submit-form', {
+                const response = await fetch('https://main--golden-dragon-88501c.netlify.app/submit-form', {//await fetch('http://localhost:3001/submit-form', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',

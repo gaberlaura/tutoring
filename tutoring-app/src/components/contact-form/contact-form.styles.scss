@@ -1,7 +1,13 @@
 .contact-form-container {
   max-width: 400px;
   margin: 0 auto;
+  
+  .error-message{
+    color: #eb1010;
+    font-weight: bold;
+  }
 }
+
 
 form {
   display: flex;

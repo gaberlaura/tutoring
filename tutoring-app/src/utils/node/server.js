@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 // Allow specific headers in CORS configuration
 app.use(cors({
-    // origin: 'https://www.sharedvision-tutoring.com',
+    origin: 'https://main--golden-dragon-88501c.netlify.app',
     methods: 'POST',
     allowedHeaders: ['Content-Type', 'Authorization'], // Add the headers your client is sending
 }));
