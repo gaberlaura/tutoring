@@ -18,7 +18,7 @@ app.use(bodyParser.json());
 
 // Allow specific headers in CORS configuration
 app.use(cors({
-    origin: 'https://main--golden-dragon-88501c.netlify.app',
+    // origin: 'https://www.sharedvision-tutoring.com',
     methods: 'POST',
     allowedHeaders: ['Content-Type', 'Authorization'], // Add the headers your client is sending
 }));
@@ -35,7 +35,12 @@ const transporter = nodemailer.createTransport({
 app.post('/submit-form', async (req, res) => {
     // Handle email submission logic here
     const emailData = req.body;
-    console.log(emailData);
+
+    console.log('Request Headers:', req.headers);
+
+    if (!emailData.subject || !emailData.email || !emailData.message) {
+        return res.status(400).send('Bad Request: Missing required fields');
+    }
 
     // Compose email options
     const mailOptions = {
