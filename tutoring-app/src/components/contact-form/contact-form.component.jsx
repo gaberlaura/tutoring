@@ -27,6 +27,8 @@ const ContactForm = () => {
         message: '',
     });
 
+    const [submissionStatus, setSubmissionStatus] = useState(null);
+
     const handleChange = (e) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
@@ -46,25 +48,25 @@ const ContactForm = () => {
         const newErrors = {};
 
         if (!formData.subject.trim()) {
-            console.log('subject:',formData.subject.trim());
+            console.log('subject:', formData.subject.trim());
             newErrors.subject = 'Subject is required';
             valid = false;
         }
 
         if (!formData.name.trim()) {
-            console.log('name:',formData.name.trim());
+            console.log('name:', formData.name.trim());
             newErrors.name = 'Name is required';
             valid = false;
         }
 
         if (!formData.email.trim() || !isValidEmail(formData.email)) {
-            console.log('email:',formData.email.trim());
+            console.log('email:', formData.email.trim());
             newErrors.email = 'Valid email is required';
             valid = false;
         }
 
         if (!formData.message.trim()) {
-            console.log('message:',formData.message.trim());
+            console.log('message:', formData.message.trim());
             newErrors.message = 'Message is required';
             valid = false;
         }
@@ -77,13 +79,14 @@ const ContactForm = () => {
         return /\S+@\S+\.\S+/.test(email);
     };
 
-
     const handleSubmit = async (e) => {
         e.preventDefault();
 
         if (validateForm()) {
             try {
-                const response = await fetch('https://main--golden-dragon-88501c.netlify.app/submit-form', {//await fetch('http://localhost:3001/submit-form', {
+                const response = await fetch('https://www.sharedvision-tutoring.com/submit-form', {
+                    //await fetch('http://localhost:3001/submit-form', {
+                    //await fetch('https://main--golden-dragon-88501c.netlify.app/submit-form', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -94,6 +97,8 @@ const ContactForm = () => {
                 if (response.ok) {
                     console.log(formData);
                     console.log('Form submitted successfully,,');
+                    setSubmissionStatus('success');
+
                     // Clear the form after submission
                     setFormData({
                         subject: '',
@@ -101,21 +106,30 @@ const ContactForm = () => {
                         email: '',
                         message: '',
                     });
+
                 } else {
                     console.error('Form submission failed(1)');
+                    setSubmissionStatus('error');
                 }
             } catch (error) {
                 console.error('Error submitting form:', error);
+                setSubmissionStatus('error');
             }
         } else {
             console.error('Form validation failed');
+            setSubmissionStatus('error');
         }
-
     };
 
     return (
         <div className="contact-form-container">
             <h1>Contact Me (COMING SOON)</h1>
+            {submissionStatus === 'success' && (
+                <div className="success-or-error-message">Thanks! We'll be in touch soon.</div>
+            )}
+            {submissionStatus === 'error' && (
+                <div className="success-or-error-message">Form submission failed. Please try again.</div>
+            )}
             <form onSubmit={handleSubmit}>
                 <label htmlFor="subject">Subject:</label>
                 <input
