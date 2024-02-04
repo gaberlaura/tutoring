@@ -1,3 +1,12 @@
+/*
+    This code sets up a React context and provider to manage user authentication state using Firebase. 
+    It initializes a context (UserContext) with a default state, defines an action type for updating the current user, 
+    and creates a reducer to handle state updates. 
+    The UserProvider component utilizes the reducer and context to manage the current user state based on Firebase authentication events. 
+    It also includes an effect that subscribes to authentication state changes, calling a Firebase utility function (createUserDocumentFromAuth) when a user is logged in and updating the state accordingly. 
+    Components wrapped in the UserProvider have access to the current user state and a function (setCurrentUser) to update it.    
+*/
+
 import { createContext, useState, useEffect, useReducer } from 'react';
 import { onAuthStateChangedListener, createUserDocumentFromAuth } from '../utils/firebase/firebase.utils';
 
