@@ -5,9 +5,19 @@
   And then visually represents the cart item with an image, and adjacent to it, displays the item's details including its name, quantity, and the total price for the specified quantity. 
 */
 
+import React from 'react';
 import './cart-item.styles.scss';
 
-const CartItem = ({ cartItem }) => {
+interface CartItemProps {
+  cartItem: {
+    imageUrl: string;
+    price: number;
+    name: string;
+    quantity: number;
+  };
+}
+
+const CartItem: React.FC<CartItemProps> = ({ cartItem }) => {
   const { imageUrl, price, name, quantity } = cartItem;
 
   return (
