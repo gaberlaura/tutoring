@@ -1,11 +1,12 @@
-/* 
+/*
     This component shares information about the founder of Shared Vision.
     It imports styles from the './about.styles.scss' file.
 */
 
+import React from 'react';
 import './about.styles.scss';
 
-const About = () => {
+const About: React.FC = () => {
     return (
         <div>
             <header className="about-header">
@@ -24,7 +25,7 @@ const About = () => {
                 </p>
             </div>
         </div>
-    )
+    );
 }
 
 export default About;
