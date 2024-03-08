@@ -1,13 +1,20 @@
-/*
-    The Directory component serves as a container for rendering a list of CategoryItem components based on the provided array of categories. 
-    Each CategoryItem represents a specific category and is rendered within the "directory-container" div.
- */
-
+import React from 'react';
 import CategoryItem from '../components/category-item/category-item.component';
 
 import './directory.styles.scss';
 
-const Directory = ({ categories }) => {
+interface Category {
+    id: string; 
+    imageUrl: string;
+    title: string;
+    desc: string;
+}
+
+interface DirectoryProps {
+    categories: Category[];
+}
+
+const Directory: React.FC<DirectoryProps> = ({ categories }) => {
     return (
         <div className="directory-container">
             {categories.map((category) => (
@@ -17,4 +24,4 @@ const Directory = ({ categories }) => {
     );
 };
 
-export default Directory
+export default Directory;
