@@ -8,22 +8,27 @@
     The label "shrinks" when the input has content, preventing overlap with the user's input.
 */
 
+import React, { ChangeEvent } from 'react';
 import './form-input.styles.scss';
 
-const FormInput = ({ label, ...otherProps }) => {
+interface FormInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    label?: string;
+}
+
+const FormInput: React.FC<FormInputProps> = ({ label, ...otherProps }) => {
     return (
         <div className='group'>
             <input className='form-input' {...otherProps} />
             {label && (
                 <label
-                    className={`${otherProps.value.length ? `shrink` : ``
+                    className={`${otherProps.value?.toString().length ? `shrink` : ``
                         } form-input-label`}
                 >
                     {label}
                 </label>
             )}
-        </div >
-    )
-}
+        </div>
+    );
+};
 
 export default FormInput;

@@ -9,10 +9,12 @@
     sends a POST request to the server, and clears the form after submission.
 */
 
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import './contact-form.styles.scss';
 
-const ContactForm = () => {
+interface ContactFormProps {}
+
+const ContactForm: React.FC<ContactFormProps> = () => {
     const [formData, setFormData] = useState({
         subject: '',
         name: '',
@@ -27,9 +29,9 @@ const ContactForm = () => {
         message: '',
     });
 
-    const [submissionStatus, setSubmissionStatus] = useState(null);
+    const [submissionStatus, setSubmissionStatus] = useState<string | null>(null);
 
-    const handleChange = (e) => {
+    const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = e.target;
         setFormData((prevData) => ({
             ...prevData,
@@ -45,28 +47,24 @@ const ContactForm = () => {
 
     const validateForm = () => {
         let valid = true;
-        const newErrors = {};
+        const newErrors = {} as { subject: string; name: string; email: string; message: string; };
 
         if (!formData.subject.trim()) {
-            console.log('subject:', formData.subject.trim());
             newErrors.subject = 'Subject is required';
             valid = false;
         }
 
         if (!formData.name.trim()) {
-            console.log('name:', formData.name.trim());
             newErrors.name = 'Name is required';
             valid = false;
         }
 
         if (!formData.email.trim() || !isValidEmail(formData.email)) {
-            console.log('email:', formData.email.trim());
             newErrors.email = 'Valid email is required';
             valid = false;
         }
 
         if (!formData.message.trim()) {
-            console.log('message:', formData.message.trim());
             newErrors.message = 'Message is required';
             valid = false;
         }
@@ -75,18 +73,16 @@ const ContactForm = () => {
         return valid;
     };
 
-    const isValidEmail = (email) => {
+    const isValidEmail = (email: string) => {
         return /\S+@\S+\.\S+/.test(email);
     };
 
-    const handleSubmit = async (e) => {
+    const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
         if (validateForm()) {
             try {
                 const response = await fetch('https://www.sharedvision-tutoring.com/submit-form', {
-                    //await fetch('http://localhost:3001/submit-form', {
-                    //await fetch('https://main--golden-dragon-88501c.netlify.app/submit-form', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -95,8 +91,6 @@ const ContactForm = () => {
                 });
 
                 if (response.ok) {
-                    console.log(formData);
-                    console.log('Form submitted successfully,,');
                     setSubmissionStatus('success');
 
                     // Clear the form after submission
@@ -106,7 +100,6 @@ const ContactForm = () => {
                         email: '',
                         message: '',
                     });
-
                 } else {
                     console.error('Form submission failed(1)');
                     setSubmissionStatus('error');
@@ -178,6 +171,6 @@ const ContactForm = () => {
             </form>
         </div>
     );
-}
+};
 
 export default ContactForm;

@@ -6,11 +6,20 @@
   The category's title and description are presented in a separate section within the card.
 */
 
+import React from 'react';
 import './category-item.styles.scss';
 
+interface CategoryItemProps {
+  category: {
+    imageUrl: string;
+    title: string;
+    desc: string;
+  };
+}
 
-const CategoryItem = ({ category }) => {
+const CategoryItem: React.FC<CategoryItemProps> = ({ category }) => {
   const { imageUrl, title, desc } = category;
+
   return (
     <div className='category-container'>
       <div
@@ -27,4 +36,4 @@ const CategoryItem = ({ category }) => {
   );
 };
 
-export default CategoryItem
+export default CategoryItem;

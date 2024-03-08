@@ -7,13 +7,24 @@
   This function dispatches a Redux action ('addItemToCart') to add the product to the shopping cart, considering the current state of the cart obtained through the 'useSelector' hook.
 */
 
+import React from 'react';
 import './product-card.styles.scss';
 import Button from '../button/button.component';
 import { useDispatch, useSelector } from 'react-redux';
 import { addItemToCart } from '../../store/cart/cart.action';
 import { selectCartItems } from '../../store/cart/cart.selector';
 
-const ProductCard = ({ product }) => {
+interface Product {
+  name: string;
+  price: number;
+  imageUrl: string;
+}
+
+interface ProductCardProps {
+  product: Product;
+}
+
+const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   const cartItems = useSelector(selectCartItems);
   const dispatch = useDispatch();
 
@@ -28,7 +39,7 @@ const ProductCard = ({ product }) => {
         <span className='name'>{name}</span>
         <span className='price'>${price}</span>
       </div>
-      <Button buttonType='inverted' onClick={addProductToCart}>Add to card</Button>
+      <Button buttonType='inverted' onClick={addProductToCart}>Add to cart</Button>
     </div>
   );
 };

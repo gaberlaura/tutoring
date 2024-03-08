@@ -7,13 +7,22 @@
     The increment, decrement, and remove buttons trigger corresponding actions dispatched to the Redux store, updating the cart's state based on user interactions.
 */
 
+import React from 'react';
 import './checkout-item.styles.scss';
-import { useContext } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectCartItems } from '../../store/cart/cart.selector';
 import { addItemToCart, clearItemFromCart, removeItemFromCart } from '../../store/cart/cart.action';
 
-const CheckoutItem = ({ cartItem }) => {
+interface CheckoutItemProps {
+  cartItem: {
+    name: string;
+    imageUrl: string;
+    price: number;
+    quantity: number;
+  };
+}
+
+const CheckoutItem: React.FC<CheckoutItemProps> = ({ cartItem }) => {
     const { name, imageUrl, price, quantity } = cartItem;
     const cartItems = useSelector(selectCartItems);
     const dispatch = useDispatch();
@@ -40,7 +49,7 @@ const CheckoutItem = ({ cartItem }) => {
             <span className='price'>{price}</span>
             <div className='remove-button' onClick={clearItemHandler}>&#10005;</div>
         </div>
-    )
+    );
 }
 
 export default CheckoutItem;
